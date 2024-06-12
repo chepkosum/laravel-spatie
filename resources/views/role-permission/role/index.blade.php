@@ -1,6 +1,6 @@
 <x-app-web-layout>
     <x-slot:title>
-   Permissions
+   Roles
 </x-slot>
 
 @include('role-permission.nav-links')
@@ -13,8 +13,8 @@
             @endif
             <div class="card mt-3">
                 <div class="card-header">
-                    <h4>Permission
-                        <a href="{{url('permissions/create')}}" class="btn btn-primary float-end">Add Permission</a>
+                    <h4>Role
+                        <a href="{{url('roles/create')}}" class="btn btn-primary float-end">Add Role</a>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -27,15 +27,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($permissions as $permission)
+                            @foreach ($roles as $role)
                             <tr>
-                                <td>{{$permission->id}}</td>
-                                <td>{{$permission->name}}</td>
+                                <td>{{$role->id}}</td>
+                                <td>{{$role->name}}</td>
                                 <td>
-                                    <a class="btn btn-info btn-sm" href="{{url('permissions/'.$permission->id.'/edit')}}">Edit</a>
+                                    <a class="btn btn-info btn-sm" href="{{url('roles/'.$role->id.'/give-permissions')}}">
+                                        Add / Edit Role Permission</a>
+
+                                    <a class="btn btn-info btn-sm" href="{{url('roles/'.$role->id.'/edit')}}">Edit</a>
                                     <a class="btn btn-danger btn-sm mx-2"
                                     {{-- onclick="if (confirm('Are you sure you want to delete this item?')) { alert('Item deleted.'); } else { alert('Deletion canceled.'); }" --}}
-                                    href="{{url('permissions/'.$permission->id.'/delete')}}">Delete</a>
+                                    href="{{url('roles/'.$role->id.'/delete')}}">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
