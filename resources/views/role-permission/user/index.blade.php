@@ -18,7 +18,8 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -32,7 +33,7 @@
                             @foreach ($users as $user)
                             <tr>
                                 <td>{{$user->id}}</td>
-                                <td>{{$user->name}}</td>
+                                <td class="text-nowrap">{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>
                                     @if (!empty($user->getRoleNames()))
@@ -41,7 +42,7 @@
                                         @endforeach
                                     @endif
                                 </td>
-                                <td>
+                                <td class="d-flex gap-1 flex-nowrap">
                                     @can('update user')
                                        <a class="btn btn-info btn-sm mx-2" href="{{url('users/'.$user->id.'/edit')}}">Edit</a>
                                     @endcan
@@ -54,7 +55,8 @@
                             </tr>
                             @endforeach
                         </tbody>
-                    </table>
+                         </table>
+                    </div>
                 </div>
             </div>
         </div>
