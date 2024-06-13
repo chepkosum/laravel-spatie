@@ -18,6 +18,7 @@
                     </h4>
                 </div>
                 <div class="card-body">
+                    <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -31,18 +32,18 @@
                             <tr>
                                 <td>{{$role->id}}</td>
                                 <td>{{$role->name}}</td>
-                                <td>
+                                <td class="d-flex gap-1 flex-nowrap">
                                     @can('add-give-permission')
-                                        <a class="btn btn-info btn-sm" href="{{url('roles/'.$role->id.'/give-permissions')}}">
+                                        <a class="btn btn-warning btn-sm text-nowrap" href="{{url('roles/'.$role->id.'/give-permissions')}}">
                                              Add / Edit Role Permission
                                         </a>
                                     @endcan
-                                    
+
                                     @can('update role')
                                         <a class="btn btn-info btn-sm" href="{{url('roles/'.$role->id.'/edit')}}">Edit</a>
                                     @endcan
                                     @can('delete role')
-                                       <a class="btn btn-danger btn-sm mx-2"
+                                       <a class="btn btn-danger btn-sm"
                                         {{-- onclick="if (confirm('Are you sure you want to delete this item?')) { alert('Item deleted.'); } else { alert('Deletion canceled.'); }" --}}
                                         href="{{url('roles/'.$role->id.'/delete')}}">Delete</a>
                                     @endcan
@@ -51,6 +52,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>
