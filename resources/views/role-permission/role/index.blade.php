@@ -32,8 +32,12 @@
                                 <td>{{$role->id}}</td>
                                 <td>{{$role->name}}</td>
                                 <td>
-                                    <a class="btn btn-info btn-sm" href="{{url('roles/'.$role->id.'/give-permissions')}}">
-                                        Add / Edit Role Permission</a>
+                                    @can('add-give-permission')
+                                        <a class="btn btn-info btn-sm" href="{{url('roles/'.$role->id.'/give-permissions')}}">
+                                             Add / Edit Role Permission
+                                        </a>
+                                    @endcan
+                                    
                                     @can('update role')
                                         <a class="btn btn-info btn-sm" href="{{url('roles/'.$role->id.'/edit')}}">Edit</a>
                                     @endcan
