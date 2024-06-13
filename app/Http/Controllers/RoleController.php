@@ -17,11 +17,11 @@ class RoleController extends Controller implements HasMiddleware
 {
     return [
         // 'role:Super Admin|Admin',
-        new Middleware('role:Super Admin|Admin', only: ['index']),
-        new Middleware('role:Super Admin', only: ['addPermissionToRole','givePermissionToRole']),
-        new Middleware('role:Super Admin|Admin', only: ['create', 'store']),
-        new Middleware('role:Super Admin', only: ['update', 'edit']),
-        new Middleware('role:Super Admin', only: ['destroy']),
+        new Middleware('permission:view role', only: ['index']),
+        new Middleware('permission:create role', only: ['addPermissionToRole','givePermissionToRole']),
+        new Middleware('permission:create role', only: ['create', 'store']),
+        new Middleware('permission:update role', only: ['update', 'edit']),
+        new Middleware('permission:delete role', only: ['destroy']),
     ];
 }
 

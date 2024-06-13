@@ -15,10 +15,10 @@ class PermissionController extends Controller implements HasMiddleware
     {
         return [
             // 'role:Super Admin|Admin',
-            new Middleware('role:Super Admin|Admin', only: ['index']),
-            new Middleware('role:Super Admin|Admin', only: ['create', 'store']),
-            new Middleware('role:Super Admin', only: ['update', 'edit']),
-            new Middleware('role:Super Admin', only: ['destroy']),
+            new Middleware('permission:view permission', only: ['index']),
+            new Middleware('permission:create permission', only: ['create', 'store']),
+            new Middleware('permission:update permission', only: ['update', 'edit']),
+            new Middleware('permission:delete permission', only: ['destroy']),
         ];
     }
 

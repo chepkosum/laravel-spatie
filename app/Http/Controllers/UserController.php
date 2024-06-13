@@ -17,10 +17,10 @@ class UserController extends Controller implements HasMiddleware
     {
         return [
             // 'role:Super Admin|Admin',
-            new Middleware('role:Super Admin|Admin', only: ['index']),
-            new Middleware('role:Super Admin|Admin', only: ['create', 'store']),
-            new Middleware('role:Super Admin', only: ['update', 'edit']),
-            new Middleware('role:Super Admin', only: ['destroy']),
+            new Middleware('permission:view user', only: ['index']),
+            new Middleware('permission:create user', only: ['create', 'store']),
+            new Middleware('permission:update user', only: ['update', 'edit']),
+            new Middleware('permission:delete user', only: ['destroy']),
         ];
     }
 
