@@ -3,12 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class RoleController extends Controller
+class RoleController extends Controller implements HasMiddleware
 {
+
+
+    public static function middleware(): array
+{
+    return [
+        // 'role:Super Admin|Admin',
+        new Middleware('role:Super Admin|Admin', only: ['index']),
+        new Middleware('role:Super Admin', only: ['addPermissionToRole','givePermissionToRole']),
+        new Middleware('role:Super Admin|Admin', only: ['create', 'store']),
+        new Middleware('role:Super Admin', only: ['update', 'edit']),
+        new Middleware('role:Super Admin', only: ['destroy']),
+    ];
+}
+
+
+
+    //For Laravel version 10 and below
+    // public function __construct() {
+    //     $this->middleware('permission: view role', ['only'=>['index']]);
+    //     $this->middleware('permission: create role', ['only'=>['create', 'store','addPermissionToRole','givePermissionToRole']]);
+    //     $this->middleware('permission: update role', ['only'=>['update', 'edit']]);
+    //     $this->middleware('permission:delete role', ['only' => ['destroy']]);
+    // }
+
+
+
     public function index(){
 
         $roles = Role::get();
@@ -99,12 +127,6 @@ public function givePermissionToRole(Request $request, $roleId){
 
     return redirect()->back()->with('status','Permissions added to role');
 }
-
-
-
-
-
-
 
 
 

@@ -3,10 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Spatie\Permission\Models\Permission;
 
-class PermissionController extends Controller
+class PermissionController extends Controller implements HasMiddleware
 {
+
+
+    public static function middleware(): array
+    {
+        return [
+            // 'role:Super Admin|Admin',
+            new Middleware('role:Super Admin|Admin', only: ['index']),
+            new Middleware('role:Super Admin|Admin', only: ['create', 'store']),
+            new Middleware('role:Super Admin', only: ['update', 'edit']),
+            new Middleware('role:Super Admin', only: ['destroy']),
+        ];
+    }
+
+
+
+       // For laravel version 10 and below
+        // public function __construct() {
+        //     $this->middleware('permission: view permission', ['only'=>['index']]);
+        //     $this->middleware('permission: create permission', ['only'=>['create', 'store']]);
+        //     $this->middleware('permission: update permission', ['only'=>['update', 'edit']]);
+        //     $this->middleware('permission:delete permission', ['only' => ['destroy']]);
+        // }
+
+
     public function index(){
 
         $permissions = Permission::get();

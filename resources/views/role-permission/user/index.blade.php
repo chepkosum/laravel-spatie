@@ -42,10 +42,14 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a class="btn btn-info btn-sm mx-2" href="{{url('users/'.$user->id.'/edit')}}">Edit</a>
-                                    <a class="btn btn-danger btn-sm mx-2"
-                                    {{-- onclick="if (confirm('Are you sure you want to delete this item?')) { alert('Item deleted.'); } else { alert('Deletion canceled.'); }" --}}
-                                    href="{{url('users/'.$user->id.'/delete')}}">Delete</a>
+                                    @can('update user')
+                                       <a class="btn btn-info btn-sm mx-2" href="{{url('users/'.$user->id.'/edit')}}">Edit</a>
+                                    @endcan
+                                    @can('delete user')
+                                       <a class="btn btn-danger btn-sm mx-2"
+                                       {{-- onclick="if (confirm('Are you sure you want to delete this item?')) { alert('Item deleted.'); } else { alert('Deletion canceled.'); }" --}}
+                                       href="{{url('users/'.$user->id.'/delete')}}">Delete</a>
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach

@@ -34,11 +34,14 @@
                                 <td>
                                     <a class="btn btn-info btn-sm" href="{{url('roles/'.$role->id.'/give-permissions')}}">
                                         Add / Edit Role Permission</a>
-
-                                    <a class="btn btn-info btn-sm" href="{{url('roles/'.$role->id.'/edit')}}">Edit</a>
-                                    <a class="btn btn-danger btn-sm mx-2"
-                                    {{-- onclick="if (confirm('Are you sure you want to delete this item?')) { alert('Item deleted.'); } else { alert('Deletion canceled.'); }" --}}
-                                    href="{{url('roles/'.$role->id.'/delete')}}">Delete</a>
+                                    @can('update role')
+                                        <a class="btn btn-info btn-sm" href="{{url('roles/'.$role->id.'/edit')}}">Edit</a>
+                                    @endcan
+                                    @can('delete role')
+                                       <a class="btn btn-danger btn-sm mx-2"
+                                        {{-- onclick="if (confirm('Are you sure you want to delete this item?')) { alert('Item deleted.'); } else { alert('Deletion canceled.'); }" --}}
+                                        href="{{url('roles/'.$role->id.'/delete')}}">Delete</a>
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach

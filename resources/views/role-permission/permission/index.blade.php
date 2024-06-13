@@ -32,10 +32,14 @@
                                 <td>{{$permission->id}}</td>
                                 <td>{{$permission->name}}</td>
                                 <td>
-                                    <a class="btn btn-info btn-sm" href="{{url('permissions/'.$permission->id.'/edit')}}">Edit</a>
+                                    @can('update permission')
+                                       <a class="btn btn-info btn-sm" href="{{url('permissions/'.$permission->id.'/edit')}}">Edit</a>
+                                    @endcan
+                                    @can('delete permission')
                                     <a class="btn btn-danger btn-sm mx-2"
-                                    {{-- onclick="if (confirm('Are you sure you want to delete this item?')) { alert('Item deleted.'); } else { alert('Deletion canceled.'); }" --}}
-                                    href="{{url('permissions/'.$permission->id.'/delete')}}">Delete</a>
+                                         {{-- onclick="if (confirm('Are you sure you want to delete this item?')) { alert('Item deleted.'); } else { alert('Deletion canceled.'); }" --}}
+                                         href="{{url('permissions/'.$permission->id.'/delete')}}">Delete</a>
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach
