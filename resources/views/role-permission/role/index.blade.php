@@ -31,7 +31,7 @@
                             @foreach ($roles as $role)
                             <tr>
                                 <td>{{$role->id}}</td>
-                                <td>{{$role->name}}</td>
+                                <td class="text-nowrap">{{$role->name}}</td>
                                 <td class="d-flex gap-1 flex-nowrap">
                                     @can('add-give-permission')
                                         <a class="btn btn-warning btn-sm text-nowrap" href="{{url('roles/'.$role->id.'/give-permissions')}}">
