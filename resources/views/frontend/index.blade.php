@@ -1,7 +1,7 @@
 <x-app-web-layout>
 
 <x-slot:title>
-    My Laravel App
+    My Laravel App Spatie
 </x-slot>
 <div class="py-5">
     @include('role-permission.nav-links')
